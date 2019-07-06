@@ -4,18 +4,18 @@ const Work = require('../models/workFlows')
 require('../app')
 const mongoose = require('mongoose')
 let newArr = []
-router.get('/', async (req, res) => {
-    try {
-        const works = await Work.find({},{"workflow_id" :true , "workflow_name" : true, "rule_set.rule_id" : true, "rule_set.rule_name" : true})
+router.get('/', (req, res) => {
+
+    Work.find({}, { "workflow_id": true, "workflow_name": true, "rule_set.rule_id": true, "rule_set.rule_name": true }).then(works => {
         res.json(works)
-    } catch
-    {
+    }).catch(() => {
+
         res.json(
             {
                 message: "Error Occured"
             }
         )
-    }
+    })
 })
 
 router.post('/add', (req, res) => {
@@ -32,9 +32,8 @@ router.post('/add', (req, res) => {
                     "opeworkflows_AND_or_OR_conditionrator": req.body.opeworkflows_AND_or_OR_conditionrator
                 }
                 let ruleArray = obj.rule_set
-                for(i = 0;i < ruleArray.length ; i++)
-                {
-                    let result = data.filter((x) => x.rule_name === ruleArray[i].trim());  
+                for (i = 0; i < ruleArray.length; i++) {
+                    let result = data.filter((x) => x.rule_name === ruleArray[i].trim());
                     newArr.push(result[0])
                 }
                 const work = new Work({
@@ -44,7 +43,7 @@ router.post('/add', (req, res) => {
                     "opeworkflows_AND_or_OR_conditionrator": req.body.opeworkflows_AND_or_OR_conditionrator
 
                 })
-                 work.save().then((result) => {
+                work.save().then((result) => {
                     res.json({
                         success: true,
                         result
