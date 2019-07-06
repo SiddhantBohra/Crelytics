@@ -1,0 +1,26 @@
+{
+  "name": "Crelytics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "convert-csv-to-json": "0.0.15",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.6.3",
+    "nodemon": "^1.19.1",
+    "papaparse": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1"
+  }
+}

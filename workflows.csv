@@ -1,0 +1,3 @@
+workflow_id,workflow_name,rule_set,workflows_AND_or_OR_condition
+1,lead_to_applicant_wf,"income_rule, age_rule, city_rule",AND
+2,applicant_to_customer_wf,"income_rule2, age_rule2, city_rule2",OR

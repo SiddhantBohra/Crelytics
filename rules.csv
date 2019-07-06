@@ -1,0 +1,7 @@
+rule_id,rule_name,field_name,operator,value
+1,income_rule,income,>,30000
+2,income_rule2,income,<,100000
+3,age_rule,age,>,25
+4,age_rule2,age,<,50
+5,city_rule,city,<>,"""delhi"""
+6,city_rule2,city,equals,delhi
