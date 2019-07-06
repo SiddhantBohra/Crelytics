@@ -22,4 +22,4 @@ let processDBSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("process",processDBSchema)
+module.exports = Procs = mongoose.model("process",processDBSchema)

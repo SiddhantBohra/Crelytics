@@ -10,15 +10,15 @@ let RulesdbSchema = new mongoose.Schema({
     },
     field_name: {
         type: String,
-        required: false
+        required: true
     },
     operator: {
         type: String,
-        required: false
+        required: true
     },
     value: {
         type: String,
-        required: false
+        required: true
     }
 })
 

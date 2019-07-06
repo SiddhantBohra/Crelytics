@@ -10,12 +10,11 @@ let workdbSchema = new mongoose.Schema({
     },
     rule_set: {
         type: Array,
-        required: true
     },
     workflows_AND_or_OR_condition: {
         type: String,
-        required: true
+        required: false
     }
 })
 
-module.exports = mongoose.model("work", workdbSchema)
+module.exports = Work = mongoose.model("work", workdbSchema)

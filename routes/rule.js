@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const addRule = require('../models/rules').default
-const Post = require('../models/rules').default
+const addRule = require('../models/rules')
+let Post = require('../models/rules')
 
 router.get('/', async (req, res) => {
     try
@@ -27,7 +27,7 @@ router.post('/add', (req, res) => {
         "operator" : req.body.operator,
         "value" : req.body.value
     })
-
+    
     post.save().then((data) => {
             res.json({
                 success: true,
