@@ -8,9 +8,9 @@ app.use(bodyParser.json())
 const rulesAdd = require('./routes/rule')
 const workflows = require('./routes/workflow')
 const process = require('./routes/process')
-app.use('/rule',rulesAdd)
-app.use('/workflow',workflows)
-app.use('/process',process)
+app.use('/rule', rulesAdd)
+app.use('/workflow', workflows)
+app.use('/process', process)
 //Connect To DB
 mongoose.connect("mongodb+srv://assassin:chromium360@cluster0-fft3g.mongodb.net/test?retryWrites=true&w=majority",
     { useNewUrlParser: true },
@@ -20,4 +20,6 @@ mongoose.connect("mongodb+srv://assassin:chromium360@cluster0-fft3g.mongodb.net/
         console.log("Error Connecting to Database")
     })
 // Listen on port 3000
-app.listen(3000)
+app.listen(port, function () {
+    console.log('Our app is running on ' + port);
+});
