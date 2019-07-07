@@ -6,48 +6,45 @@ require('../app')
 
 
 router.post('/add', (req, res) => {
-
     if (mongoose.connection.readyState == 1) {
         console.log(mongoose.connection.readyState)
-        mongoose.connection.db.collection("works", (err, collection) =>{
-            collection.find({},{"workflow_id" : "2"}).toArray((err, data) => {
-                console.log(data); 
-                
-                // it will print your collection data
-                // let obj = {
-                //     "workflow_id": req.body.workflow_id,
-                //     "workflow_name": req.body.workflow_name,
-                //     "rule_set": req.body.rule_set,
-                //     "opeworkflows_AND_or_OR_conditionrator": req.body.opeworkflows_AND_or_OR_conditionrator
-                // }
-                // let ruleArray = obj.rule_set
-                // for (i = 0; i < ruleArray.length; i++) {
-                //     let result = data.filter((x) => x.rule_name === ruleArray[i].trim());
-                //     newArr.push(result[0])
-                // }
-                // const work = new Work({
-                //     "workflow_id": req.body.workflow_id,
-                //     "workflow_name": req.body.workflow_name,
-                //     "rule_set": newArr,
-                //     "opeworkflows_AND_or_OR_conditionrator": req.body.opeworkflows_AND_or_OR_conditionrator
-
-                // })
-                // work.save().then((result) => {
-                //     res.json({
-                //         success: true,
-                //         result
-                //     });
-                // }).catch((error) => {
-                //     console.log(error)
-                //     res.json({
-                //         error:
-                //         {
-                //             message: "We are facing some issues! Please try again later"
-                //         }
-                //     })
-                // })
-
+        mongoose.connection.db.collection("works", (err, collection) => {
+            collection.find({ "workflow": { $eq: req.body.workflow_id} }).toArray((err, data) => {
+                console.log(req.body.workflow)
+                console.log(data[0]);
+                const procs = new Procs({
+                    "process_id": req.body.process_id,
+                    "process_name": req.body.process_name,
+                    "originNode": req.body.originNode,
+                    "destinationNode": req.body.destinationNode,
+                    "workflow_set": data[0]
+                })
+                procs.save().then(result => {
+                    let obj = {
+                        "process_id": result.process_id,
+                        "process_name": result.process_name
+                    }
+                    res.json({
+                        success: "true",
+                        obj
+                    })
+                }).catch(err => {
+                    console.log(err)
+                    res.json({
+                        error: {
+                            message: "Sorry! We are curently facing issues"
+                        }
+                    })
+                })
             })
+        })
+    }
+    else {
+        res.json({
+            error: {
+                code: "520",
+                message: "Connection Error"
+            }
         })
     }
 })

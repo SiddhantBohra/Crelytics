@@ -1,24 +1,23 @@
 const mongoose = require('mongoose')
 let processDBSchema = new mongoose.Schema({
-    origin: {
+    process_id: {
         type: String,
         required: true
     },
-    destination: {
+    process_name: {
         type: String,
         required: true
     },
-    field_name: {
+    originNode: {
         type: String,
-        required: false
+        required: true
     },
-    operator: {
+    destinationNode: {
         type: String,
-        required: false
+        required: true
     },
-    value: {
-        type: String,
-        required: false
+    workflow_set: {
+        type: Array,
     }
 })
 

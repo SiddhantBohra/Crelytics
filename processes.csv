@@ -1,3 +1,3 @@
 process_id,process_name,originNode,destinationNode,workflow
-1,applicant_to_customer,applicant,customer,workflow1
-2,lead_to_applicant,lead,applicant,workflow2
+1,applicant_to_customer,applicant,customer,1
+2,lead_to_applicant,lead,applicant,2
