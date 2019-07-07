@@ -1,4 +1,5 @@
 const express = require('express')
+var port = process.env.port || 3000;
 const app = express()
 const mongoose = require('mongoose')
 require('dotenv/config')
@@ -7,10 +8,13 @@ app.use(bodyParser.json())
 //Import Routes
 const rulesAdd = require('./routes/rule')
 const workflows = require('./routes/workflow')
-const process = require('./routes/process')
+const pro = require('./routes/process')
 app.use('/rule',rulesAdd)
 app.use('/workflow',workflows)
-app.use('/process',process)
+app.use('/process',pro)
+app.get('/',(req,res) =>{
+    res.send(`Hello Crelytics`)
+})
 //Connect To DB
 mongoose.connect("mongodb+srv://assassin:chromium360@cluster0-fft3g.mongodb.net/test?retryWrites=true&w=majority",
     { useNewUrlParser: true },
@@ -20,4 +24,6 @@ mongoose.connect("mongodb+srv://assassin:chromium360@cluster0-fft3g.mongodb.net/
         console.log("Error Connecting to Database")
     })
 // Listen on port 3000
-app.listen(3000)
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+});
