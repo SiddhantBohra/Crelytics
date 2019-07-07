@@ -1,5 +1,6 @@
 const express = require('express')
-var port = process.env.port || 3000;
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
 const app = express()
 const mongoose = require('mongoose')
 require('dotenv/config')
@@ -24,6 +25,7 @@ mongoose.connect("mongodb+srv://assassin:chromium360@cluster0-fft3g.mongodb.net/
         console.log("Error Connecting to Database")
     })
 // Listen on port 3000
-app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
-});
+app.listen(port, host, function() {
+    console.log("Server started.......");
+  });
+  
