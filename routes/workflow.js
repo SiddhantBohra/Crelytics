@@ -7,7 +7,10 @@ let newArr = []
 router.get('/', (req, res) => {
 
     Work.find({}, { "workflow_id": true, "workflow_name": true, "rule_set.rule_id": true, "rule_set.rule_name": true }).then(works => {
-        res.json(works)
+        res.json({
+            success : true,
+            works
+        })
     }).catch(() => {
 
         res.json(
