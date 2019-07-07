@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
             works
         })
     }).catch(() => {
-
         res.json(
             {
                 message: "Error Occured"
@@ -44,9 +43,9 @@ router.post('/add', (req, res) => {
                     "workflow_name": req.body.workflow_name,
                     "rule_set": newArr,
                     "opeworkflows_AND_or_OR_conditionrator": req.body.opeworkflows_AND_or_OR_conditionrator
-
                 })
                 work.save().then((result) => {
+                    newArr.length = 0
                     res.json({
                         success: true,
                         result
@@ -65,8 +64,6 @@ router.post('/add', (req, res) => {
         })
 
     }
-
-
 })
 
 module.exports = router

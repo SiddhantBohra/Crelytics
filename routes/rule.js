@@ -33,7 +33,8 @@ router.post('/add', (req, res) => {
                 success: true,
                 data
             });
-        }).catch(() => {
+        }).catch((err) => {
+            console.log(err)
             res.json({
                 error:
                 {
