@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const express = require('express')
 const router = express.Router()
 const Procs = require('../models/processSchema')
 require('../app')
@@ -8,9 +9,11 @@ router.post('/add', (req, res) => {
 
     if (mongoose.connection.readyState == 1) {
         console.log(mongoose.connection.readyState)
-        mongoose.connection.db.collection("works", function (err, collection) {
-            collection.find({}).toArray(function (err, data) {
-                console.log(data); // it will print your collection data
+        mongoose.connection.db.collection("works", (err, collection) =>{
+            collection.find({},{"workflow_id" : "2"}).toArray((err, data) => {
+                console.log(data); 
+                
+                // it will print your collection data
                 // let obj = {
                 //     "workflow_id": req.body.workflow_id,
                 //     "workflow_name": req.body.workflow_name,

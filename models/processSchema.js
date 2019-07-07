@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 let processDBSchema = new mongoose.Schema({
-    rule_id: {
+    origin: {
         type: String,
         required: true
     },
-    rule_name: {
+    destination: {
         type: String,
         required: true
     },
