@@ -4,7 +4,18 @@ const router = express.Router()
 const Procs = require('../models/processSchema')
 require('../app')
 
-
+router.get('/', async(req,res) =>{
+    Procs.find({},{process_id : true , process_name : true,"workflow_set.workflow_id":true,"workflow_set.workflow_name" : true,"workflow_set.rule_set.rule_name" : true,"workflow_set.rule_set.rule_id":true}).then(result =>{        
+        res.json({
+            success : true,
+            result
+        })   
+    }).catch(err =>{
+        res.json({
+            message : err
+        })
+    })
+})
 router.post('/add', (req, res) => {
     if (mongoose.connection.readyState == 1) {
         console.log(mongoose.connection.readyState)
