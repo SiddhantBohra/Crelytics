@@ -22,7 +22,6 @@ router.post('/add', (req, res) => {
         mongoose.connection.db.collection("works", (err, collection) => {
             collection.find({ "workflow": { $eq: req.body.workflow_id} }).toArray((err, data) => {
                 console.log(req.body.workflow)
-                console.log(data[0]);
                 const procs = new Procs({
                     "process_id": req.body.process_id,
                     "process_name": req.body.process_name,
