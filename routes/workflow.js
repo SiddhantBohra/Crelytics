@@ -45,6 +45,7 @@ router.post('/add', (req, res) => {
                     "opeworkflows_AND_or_OR_conditionrator": req.body.opeworkflows_AND_or_OR_conditionrator
                 })
                 work.save().then((result) => {
+                    console.log(result)
                     newArr.length = 0
                     res.json({
                         success: true,
